@@ -1,0 +1,29 @@
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin: 0 3px; 
+}
+
+button {
+  padding: 10px 20px; 
+  background-color: #00539C; 
+  color: white; 
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px white;
+
+}
+
+button:hover {
+  background-color: #003366;
+}

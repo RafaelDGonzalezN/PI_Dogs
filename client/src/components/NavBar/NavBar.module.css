@@ -1,0 +1,58 @@
+.navbar {
+    background-color: #87CEEB; /* Light blue as the primary color */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .back {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    color: #003366;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .creation {
+    border-radius: 10px;
+    background-color: #00539C;
+    color: white;
+    padding:13px 25px;
+    cursor: pointer; 
+    font-size: 15px;
+    font-weight: bold
+  }
+  
+  .creation:hover {
+    background-color: #003366; 
+  }
+  .search{
+    position:absolute;
+    top: 15px;
+    right: 28%;
+  }
+  .input {
+    padding: 10px;
+    margin-right: 8px;
+    font-size: 16px;
+    border: 2px solid #00539C; 
+    border-radius: 10px;
+  }
+  
+  .busqueda {
+    border-radius: 10px;
+    background-color: #00539C;
+    color: white;
+    padding:13px 25px;
+    cursor: pointer; 
+    font-size: 15px;
+    font-weight: bold
+  }
+  
+  .busqueda:hover {
+    background-color: #003366; 
+  }
