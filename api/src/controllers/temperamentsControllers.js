@@ -1,11 +1,11 @@
-const {Dog, Temperament} = require ("../db")
+const {Temperament} = require ("../db")
 const axios = require ("axios")
 
 const getTemperaments = async () =>{
-    const allData = await axios("https://api.thedogapi.com/v1/breeds");
+    const apiRaw = await axios("https://api.thedogapi.com/v1/breeds");
 
-    let everyTemperament = allData.data.map(dog => dog.temperament ? dog.temperament : "No Info").map(dog => dog?.split(", "));
-    let eachTemperament = [...new Set(everyTemperament.flat())];
+    let temperament = apiRaw.data.map(dog => dog.temperament ? dog.temperament : "No Info").map(dog => dog?.split(", "));
+    let eachTemperament = [...new Set(temperament.flat())];
     eachTemperament.forEach(temp => {
         if(temp) {
             Temperament.findOrCreate({where: {name: temp}})

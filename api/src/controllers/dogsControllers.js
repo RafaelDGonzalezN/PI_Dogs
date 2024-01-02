@@ -3,34 +3,7 @@ const axios = require ("axios")
 const { API_KEY } = process.env;
 const URL =`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
 const  {Op} = require ("sequelize")
-
-const cleanDog = (arr) =>
-    arr.map((e) =>{
-        return{
-            id: e.id,
-            image: e.image.url,
-            name: e.name,
-            temperament: e.temperament,
-            height: e.height.metric,
-            weight: e.weight.metric,
-            life_span: e.life_span,
-            created: false,
-        }
-    })
-
-const cleanDogId = (obj) =>{
-        const e = obj;
-        return [{
-            id: e.id,
-            image: e.image,
-            name: e.name,
-            temperament : e.temperament,
-            height: e.height.metric,
-            weight: e.weight.metric,
-            life_span: e.life_span,
-            created: false,
-        }];
-    }
+const {cleanDog, cleanDogId} = require ("../utils/funtionClean")
 
 const getDogs = async()=>{
     const dbDogs = await Dog.findAll({
@@ -41,7 +14,11 @@ const getDogs = async()=>{
                 attributes: []
             }
         }
-    })
+    }).then(dogs => dogs.map(dog => ({
+        ...dog.dataValues,
+        temperament: dog.temperaments.map(temp => temp.name).join(", ")
+    })));
+    ;
     
     const apiDogsRaw = (await axios.get(URL)).data
 
@@ -57,15 +34,7 @@ const getDogById = async (id, source) => {
         const {data} = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`);
         const dogImagen = await axios(`https://api.thedogapi.com/v1/images/${data.reference_image_id}?api_key=${API_KEY}`);
         
-        dog = {
-            id: data.id,
-            name: data.name,
-            image: dogImagen.data.url,
-            weight: data.weight.metric,
-            height: data.height.metric,
-            life_span: data.life_span,
-            temperament: data.temperament,
-        };
+        dog = cleanDogId(data, dogImagen)
     } else {
         dog = await Dog.findByPk(id, {
             include: {
