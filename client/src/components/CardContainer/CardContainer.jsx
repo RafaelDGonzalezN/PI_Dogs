@@ -6,9 +6,7 @@ function Cards({ allDogs }) {
   return (
     <div>
       {dogsList?.map((dog) => (
-        <div key={dog.id}>
-          <Card dog={dog} />
-        </div>
+        <div key={dog.id}></div>
       ))}
     </div>
   );

@@ -67,10 +67,11 @@ function rootReducer(state =initialState,action){
                   error: false,
             };
         case ORDER_BY_NAME:
-                //Ordenar los perros por nombre
+
         const filterDogs = action.payload === "A-Z" ? state.dogs.sort((a,b) => {
             if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-            if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;                return 0
+            if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;                
+            return 0
             })
             : state.dogs.sort((a, b) => {
             if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;

@@ -11,10 +11,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card"
 import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { logoRefresh } from "../../img/logos";
 
-import "./home.styles.css";
+import styles from "./Home.module.css";
 
 function Home(){
 
@@ -77,75 +76,72 @@ function Home(){
  
     },[dispatch]);
 
+    return (
+        <div className={styles.home}>
+          <header>
+            <NavBar pagination={pagination} />
+            <div>
+              <div className={styles.filtros}>
+                <select onChange={(event) => handlerFilterByName(event)}>
+                  <option key={1} value="Order">Order by name</option>
+                  <option key={3} value="A-Z">A-Z</option>
+                  <option key={2} value="Z-A">Z-A</option>
+                </select>
+    
+                <select onChange={(event) => handlerFilterByWeight(event)}>
+                  <option key={3} value="Order">Order by weight</option>
+                  <option key={1} value="asc">Ascendente</option>
+                  <option key={2} value="desc">Descendente</option>
+                </select>
+    
+                <select onChange={(event) => handlerFilterCreated(event)}>
+                  <option key={4} value="Order">Order by created</option>
+                  <option key={1} value="all">ALL</option>
+                  <option key={2} value="true">Created</option>
+                  <option key={3} value="false">api</option>
+                </select>
+    
+                <select onChange={(event) => handlerFilterTemperament(event)}>
+                  <option key={2} value="Temperaments">Temperaments</option>
+                  <option key={1 + "e"} value="all">All</option>
+                  {allTemperaments.map((temp, index) => (
+                    <option value={temp.name} key={index}>{temp.name}</option>
+                  ))}
+                </select>
+                {searchString && <p>{searchString}</p>}
 
-    return(
-        <div className="home">
-            <header>
-            <NavBar pagination={pagination}/>
-                <div >
-                    <div className="filtros">
-                                   
-                        <select onChange={(event) => handlerFilterByName(event)}>
-                            <option  key={1} disabled value="Order" >Order by name</option>
-                            <option  key={3} value="A-Z">A-Z</option>
-                            <option  key={2} value="Z-A">Z-A</option>
-                        </select>
-
-                        <select onChange={(event) => handlerFilterByWeight(event)}>
-                            <option key={3} disabled value="Order">Order by weight</option>
-                            <option key={1} value="asc">Ascendente</option>
-                            <option key={2} value="desc">Descendente</option>
-                        </select>
-
-                        <select onChange={(event) => handlerFilterCreated(event)}>
-                            <option  key={4} disabled value="Order" >Order by created</option>
-                            <option  key={1} value="all">ALL</option>
-                            <option  key={2} value="true">Created</option>
-                            <option  key={3} value="false">api</option>
-                        </select>           
-
-                        <select onChange={(event) => handlerFilterTemperament(event)}>
-                            <option  key={2} disabled value="Temperaments">Temperaments</option>
-                            <option  key={1 + "e"} value="all">All</option>
-                                {allTemperaments.map((temp, index) => (
-                            <option  value={temp.name} key={index}>{temp.name}</option>))}
-                        </select>
-                        {searchString && <p >{searchString}</p>}
-                        <div >
-                             <FontAwesomeIcon className="arrow" icon={faArrowRotateRight} onClick={handleClick} />
-                        </div>
-                    </div>
-                </div>    
-            </header>
-            <div className="cardsContainer">
-  {Object.keys(allDogs).length ? (
-    <div className="cartaCon">
-      {currentDogs?.map((dog) => (
-        <div className="card" key={dog.id}>
-          <Card
-            id={dog.id}
-            image={dog.image}
-            name={dog.name}
-            temperament={dog.temperament}
-            weight={dog.weight}
-          />
+                <div onClick={handleClick}>
+                <img className={styles.logo} src={logoRefresh} alt="Logo" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div className={styles.cardsContainer}>
+            {Object.keys(allDogs).length ? (
+              <div className={styles.cartaCon}>
+                {currentDogs?.map((dog) => (
+                  <div className={styles.card} key={dog.id}>
+                    <Card
+                      id={dog.id}
+                      image={dog.image}
+                      name={dog.name}
+                      temperament={dog.temperament}
+                      weight={dog.weight}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div>
+                <Loading />
+              </div>
+            )}
+          </div>
+          <div className={styles.pagina}>
+            <Pagination className={styles.pag} dogsPerPage={dogsPerPage} allDogs={allDogs.length} pagination={pagination} currentPage={currentPage} />
+          </div>
         </div>
-      ))}
-    </div>
-  ) : (
-    <div>
-      <Loading />
-    </div>
-  )}
-</div>
-                    <div className="pagina">
-                        
-                        <Pagination className="pag"  dogsPerPage={dogsPerPage} allDogs={allDogs.length} pagination={pagination}/>
-
-                    </div>
-        </div>
-    )
-
-}
+      );
+    }
 
 export default Home;

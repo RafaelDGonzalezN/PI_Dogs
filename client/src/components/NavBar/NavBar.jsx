@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getByName } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPaw} from '@fortawesome/free-solid-svg-icons';
 import style from "./NavBar.module.css"
+import { logoBack } from "../../img/logos";
 
 const NavBar = ({pagination}) => {
     const dispatch = useDispatch();
@@ -26,10 +25,10 @@ const NavBar = ({pagination}) => {
         <nav className={style.navbar}>
             <div className={style.back}>
                 <Link to = "/">
-                    <FontAwesomeIcon className={style.logo} icon={faPaw} />
+                        <img className={style.logo} src={logoBack} alt="Logo" />
                 </Link>
             </div>
-            <div onSubmit={handleSubmit} className={style.search} >
+            <form onSubmit={handleSubmit} className={style.search} >
                 <input 
                     className={style.input}
                     type="text" 
@@ -37,7 +36,7 @@ const NavBar = ({pagination}) => {
                     value={searchDog} 
                     placeholder="Name of a dog..."/>
                 <button className={style.busqueda} type="submit">Search</button>
-            </div>
+            </form>
             
             <div>
                 <Link to="/form">

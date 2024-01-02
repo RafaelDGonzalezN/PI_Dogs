@@ -5,11 +5,7 @@ import Home from './views/Home/Home'
 import Detail from './views/Detail/Detail'
 import Form from './views/Form/Form'
 
-// import { useState } from 'react'
-import './App.css'
-
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
   
