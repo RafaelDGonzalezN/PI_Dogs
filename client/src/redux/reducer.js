@@ -12,7 +12,13 @@ import {
 import { calcuteWeightAverage } from "../utils/calculte";
 
 
-let initialState = {allDogs:[], dogs:[], temperament: [], dogDetail: {}, newDog: {}, createdFiler: null};
+let initialState = {
+    allDogs:[], 
+    dogs:[], 
+    temperament: [], 
+    dogDetail: {}, 
+    newDog: {},
+};
 
 function rootReducer(state =initialState,action){
     switch(action.type){

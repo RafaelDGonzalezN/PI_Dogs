@@ -60,7 +60,7 @@ function Home(){
     const handlerFilterCreated = (event) => {
         dispatch(filterCreateDog(event.target.value))
         setCurrentPage(1)
-        setSearchFilter(`Filter by ${event.target.value}`)
+        setSearchFilter(`Created ${event.target.value}`)
     }
 
     const handlerFilterTemperament = (event) => {
@@ -99,8 +99,8 @@ function Home(){
                 <select onChange={(event) => handlerFilterCreated(event)}>
                   <option key={4} value="Order">Order by created</option>
                   <option key={1} value="all">ALL</option>
-                  <option key={2} value="BDD">Created</option>
-                  <option key={3} value="Api">Api</option>
+                  <option key={2} value="true">Created</option>
+                  <option key={3} value="false">Api</option>
                 </select>
     
                 <select onChange={(event) => handlerFilterTemperament(event)}>

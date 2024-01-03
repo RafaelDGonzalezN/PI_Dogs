@@ -191,7 +191,8 @@ function Create(){
               value={input.image}
               onChange={handleChange}
             />
-  
+            <h2 className={styles.errorMessage}>{errors.image && <p>{errors.image}</p>}</h2>
+
             <label>Temperaments: </label>
             <select className={styles.selectField} onChange={handleSelect} defaultValue="all">
               <option value="all" disabled>
@@ -208,7 +209,7 @@ function Create(){
             {input.temperament.map((d, i) => (
               <div className={styles.temperamentItem} key={i++}>
                 <div>{d}</div>
-                <button className={styles.deleteTemperament} onClick={() => handleErase(d)}>X</button>
+                <div className={styles.deleteTemperament} onClick={() => handleErase(d)}>X</div>
               </div>
             ))}
             </div>  

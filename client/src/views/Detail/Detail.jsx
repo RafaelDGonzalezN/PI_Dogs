@@ -44,7 +44,9 @@ const Detail = () => {
                     ? dog.temperaments.join(", ")
                     : dog.temperament}
                 </h1>
-                <h1>Life span: {dog.life_span ? dog.life_span : "N/A"}</h1>
+                <h1> 
+                Life span: {dog.life_span ? (dog.life_span.includes("years") ? dog.life_span : `${dog.life_span} years`) : "N/A"}
+                </h1>
               </div>
             ) : (
               <Loading />
