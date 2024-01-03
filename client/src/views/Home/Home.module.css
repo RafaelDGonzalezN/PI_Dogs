@@ -45,3 +45,10 @@
   height: 40px;
   border-radius: 100%;
 }
+
+.filterBy{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}

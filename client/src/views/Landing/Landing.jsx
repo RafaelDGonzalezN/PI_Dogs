@@ -6,7 +6,7 @@ import style from "./Landing.module.css"
 const Landing = () => {
     return (
         <div className={style.Landing}>
-            <div >
+            <div>
             <h1 className={style.title}>Dogs</h1>
             <Link to="/home">
                 <button>Bienvenido!</button>

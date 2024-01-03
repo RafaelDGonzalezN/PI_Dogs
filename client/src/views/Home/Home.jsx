@@ -24,6 +24,7 @@ function Home(){
     const allTemperaments = useSelector((state) => {return state.temperament})
 
     const [searchString, setSearchString] = useState("")
+    const [searchFilter, setSearchFilter] = useState("")
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -44,30 +45,31 @@ function Home(){
         setCurrentPage(1);
         setSearchString("");
     }
+    const handlerFilterByName = (event) => {
+        dispatch(orderByName(event.target.value))
+        setCurrentPage(1)
+        setSearchString(`Order by ${event.target.value}`)
+    }
+    const handlerFilterByWeight = (event) => {
+        
+        dispatch(orderWeight(event.target.value))
+        setCurrentPage(1)
+        setSearchString(`Order by ${event.target.value}`)
+    }
 
     const handlerFilterCreated = (event) => {
         dispatch(filterCreateDog(event.target.value))
         setCurrentPage(1)
+        setSearchFilter(`Filter by ${event.target.value}`)
     }
 
     const handlerFilterTemperament = (event) => {
         dispatch(filterTemperament(event.target.value))
         setCurrentPage(1)
+        setSearchFilter(`Filter by ${event.target.value}`)
     }
 
-    const handlerFilterByName = (event) => {
-        const selectedValue = event.target.value
-        dispatch(orderByName(selectedValue))
-        setCurrentPage(1)
-        setSearchString(selectedValue === "Order" ? "" : `Order by ${selectedValue}`)
-    }
 
-    const handlerFilterByWeight = (e) => {
-        
-        dispatch(orderWeight(e.target.value))
-        setCurrentPage(1)
-        setSearchString(`Order by ${e.target.value}`)
-    }
 
     useEffect(() => {
         
@@ -97,8 +99,8 @@ function Home(){
                 <select onChange={(event) => handlerFilterCreated(event)}>
                   <option key={4} value="Order">Order by created</option>
                   <option key={1} value="all">ALL</option>
-                  <option key={2} value="true">Created</option>
-                  <option key={3} value="false">api</option>
+                  <option key={2} value="BDD">Created</option>
+                  <option key={3} value="Api">Api</option>
                 </select>
     
                 <select onChange={(event) => handlerFilterTemperament(event)}>
@@ -108,8 +110,10 @@ function Home(){
                     <option value={temp.name} key={index}>{temp.name}</option>
                   ))}
                 </select>
-                {searchString && <p>{searchString}</p>}
-
+                <div className={styles.filterBy}>
+                  {searchString && <p>{searchString}  -</p>}
+                  {searchFilter && <p>- {searchFilter}</p>}
+                </div>
                 <div onClick={handleClick}>
                 <img className={styles.logo} src={logoRefresh} alt="Logo" />
                 </div>

@@ -1,9 +1,5 @@
 import {Route, Routes} from "react-router-dom"
-
-import Landing from './views/Landing/Landing'
-import Home from './views/Home/Home'
-import Detail from './views/Detail/Detail'
-import Form from './views/Form/Form'
+import { Landing, Home, Detail, Form } from "./views/index"
 
 function App() {
 
@@ -20,8 +16,6 @@ function App() {
       
       </Routes>    
   
-    
- 
   )
 }
 

@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Loading.module.css";
+import { logoLoading } from "../../img/logos";
 
 const Loading = () => {
   return (
     <div className={styles.loadingContainer}>
       <img
-        src="https://i.pinimg.com/originals/44/0b/9d/440b9dc08fefeff13ec30dc0ae6a09df.gif"
-        alt="Loading..."
+        src={logoLoading} alt=""
         className={styles.loadingImage}
       />
       <h1 className={styles.loadingText}>Loading</h1>

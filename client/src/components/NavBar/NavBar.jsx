@@ -25,7 +25,7 @@ const NavBar = ({pagination}) => {
         <nav className={style.navbar}>
             <div className={style.back}>
                 <Link to = "/">
-                        <img className={style.logo} src={logoBack} alt="Logo" />
+                        <img className={style.logo} src={logoBack} alt=""/>
                 </Link>
             </div>
             <form onSubmit={handleSubmit} className={style.search} >
@@ -35,12 +35,12 @@ const NavBar = ({pagination}) => {
                     onChange={handleInput} 
                     value={searchDog} 
                     placeholder="Name of a dog..."/>
-                <button className={style.busqueda} type="submit">Search</button>
+                <button className={style.searchButton} type="submit">Search</button>
             </form>
             
             <div>
                 <Link to="/form">
-                    <button className={style.creation}>Create DOG</button>
+                    <button className={style.create}>Create DOG</button>
                 </Link>
             </div>
         </nav>

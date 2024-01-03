@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../redux/actions";
+import { clearDetail, getDetail } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
@@ -18,6 +18,9 @@ const Detail = () => {
 
   const dog = useSelector((state) => state.dogDetail);
 
+  const handlerClick = () =>{
+    dispatch(clearDetail())
+  }
   return (
     <div className={styles.fondo}>
       <div className={styles.container}>
@@ -51,7 +54,7 @@ const Detail = () => {
       </div>
       <div>
         <Link to="/home">
-          <button className={styles.buttonReturn}>Return home</button>
+          <button className={styles.buttonReturn} onClick={handlerClick}>Return home</button>
         </Link>
       </div>
     </div>
