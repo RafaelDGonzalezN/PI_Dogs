@@ -17,6 +17,8 @@ const validation = (input) => {
         errors.name = "The name can't contain numbers or special characters";
     } else if (input.name.length > 25 || input.name.length < 4 ) {
         errors.name = "Must contain between 4 to 20 characters";
+    } else if (input.name.startsWith(" ") === true){
+        errors.name = "No puede ser un campo vacio"
     }
 
     
@@ -24,9 +26,9 @@ const validation = (input) => {
         errors.height_min = "Write a number"
     } else if (!numRegex.test(input.height_min)){
         errors.height_min = "Can only contain numbers"
-    } else if (input.height_min < 0) {
+    } else if (input.height_min < 1) {
         errors.height_min = "Height min cannot be less than 0";
-    } else if (minHeight > maxHeight ) {
+    } else if (minHeight >= maxHeight) {
         errors.height_min = "Height min cannot be greater than max";
     }
     
@@ -34,7 +36,7 @@ const validation = (input) => {
         errors.height_max = "Write a number"
     } else if (!numRegex.test(input.height_max)){
         errors.height_max = "Can only contain numbers"
-    } else if (input.height_max < 0) {
+    } else if (input.height_max < 1) {
         errors.height_max = "Height max cannot be less than 0";
     } else if (input.height_max > 100) {
         errors.height_max = "Height max cannot be greater than 100";
