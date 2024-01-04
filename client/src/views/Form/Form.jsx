@@ -74,7 +74,7 @@ function Create(){
     
         if (Object.keys(validationErrors).length === 0) {
             try {
-               const doggy = {
+               const newPostDog = {
                     name: input.name,
                     height: `${input.height_min} - ${input.height_max}`,
                     weight: `${input.weight_min} - ${input.weight_max}`,
@@ -82,12 +82,9 @@ function Create(){
                     image:input.image,
                     temperament: input.temperament,
                 };
-
                 
-                const response = await dispatch(postDog(doggy));
-    
-                console.log('Respuesta del servidor:', response);
-    
+                await dispatch(postDog(newPostDog));
+
                 setInput({
                     name: "",
                     height_min: "",
@@ -95,13 +92,13 @@ function Create(){
                     weight_min: "",
                     weight_max: "",
                     life_span: "",
-                    image:"",
+                    image:"",  
                     temperament: [],
                 });
     
                 alert("The dog was created successfully");
             } catch (error) {
-                console.error('Error al crear el perro:', error);
+                console.error('Error creating the dog:', error);
     
                 alert("Error creating the dog");
             }
@@ -204,6 +201,7 @@ function Create(){
                 </option>
               ))}
             </select>
+              <h2 className={styles.errorMessage}>{errors.temperament && <p>{errors.temperament}</p>}</h2>
                 
             <div className={styles.temperament}>
             {input.temperament.map((d, i) => (
@@ -213,10 +211,9 @@ function Create(){
               </div>
             ))}
             </div>  
-            <h2 className={styles.errorMessage}>{errors.temperament && <p>{errors.temperament}</p>}</h2>
   
-            {!Object.keys(errors).length === 0 ? (
-              <div className={styles.errorMsg}>The dog can't be created yet</div>
+            {Object.keys(errors).length === 0 ? (
+              <div className={styles.errorMessage}>The dog can't be created yet</div>
             ) : (
               <button
                 className={styles.createButton}

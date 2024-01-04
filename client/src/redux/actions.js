@@ -89,7 +89,7 @@ export const postDog = (payload) => async dispatch => {
             payload: response.data
         });
     } catch (error) {
-        console.error("Error posting dog:", error);
+        window.alert("Error adding new dog", error.message)
     }
 };
 
